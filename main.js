@@ -14,7 +14,7 @@ let mainWindow
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({ width: 800, height: 600 })
+    mainWindow = new BrowserWindow({ width: 800, height: 900 })
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
@@ -80,7 +80,7 @@ function initWindowMenu() {
                 }
             },
             {
-                label: 'Full Twitter',
+                label: 'PC Twitter',
                 click: function(item, window) {
                     window.loadURL(url.format({
                         pathname: path.join(__dirname, 'index-full.html'),
