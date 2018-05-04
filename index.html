@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Twitter in Electron</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="d-webview">
+        <!-- 
+        <webview id="webview" src="https://mobile.twitter.com/home" autosize="on" />
+         -->
+        <webview id="webview" src="https://twitter.com" autosize="on" />
+    </div>
+</body>
+
+<script>
+    const electron = require('electron')
+    onload = () => {
+        const webview = document.getElementById('webview');
+        webview.addEventListener('new-window', function(e) {
+            electron.shell.openExternal(e.url);
+        });
+    }
+</script>
+
+</html>
