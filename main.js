@@ -65,32 +65,46 @@ app.on('activate', function() {
 function initWindowMenu() {
 
     const template = [{
-        label: 'View',
-        submenu: [
-            { role: 'reload' },
-            { role: 'toggledevtools' },
-            {
-                label: 'Mobile Twitter',
-                click: function(item, window) {
-                    window.loadURL(url.format({
-                        pathname: path.join(__dirname, 'index.html'),
-                        protocol: 'file:',
-                        slashes: true
-                    }))
+            label: 'Edit',
+            submenu: [
+                { role: 'undo' },
+                { role: 'redo' },
+                { type: 'separator' },
+                { role: 'cut' },
+                { role: 'copy' },
+                { role: 'paste' },
+                { role: 'delete' },
+                { role: 'selectall' }
+            ]
+        },
+        {
+            label: 'View',
+            submenu: [
+                { role: 'reload' },
+                { role: 'toggledevtools' },
+                {
+                    label: 'Mobile Twitter',
+                    click: function(item, window) {
+                        window.loadURL(url.format({
+                            pathname: path.join(__dirname, 'index.html'),
+                            protocol: 'file:',
+                            slashes: true
+                        }))
+                    }
+                },
+                {
+                    label: 'PC Twitter',
+                    click: function(item, window) {
+                        window.loadURL(url.format({
+                            pathname: path.join(__dirname, 'index-full.html'),
+                            protocol: 'file:',
+                            slashes: true
+                        }))
+                    }
                 }
-            },
-            {
-                label: 'PC Twitter',
-                click: function(item, window) {
-                    window.loadURL(url.format({
-                        pathname: path.join(__dirname, 'index-full.html'),
-                        protocol: 'file:',
-                        slashes: true
-                    }))
-                }
-            }
-        ]
-    }]
+            ]
+        }
+    ]
 
     if (process.platform === 'darwin') {
         template.unshift({
