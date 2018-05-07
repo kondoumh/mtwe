@@ -16,7 +16,7 @@ Twitter Client uses Electron WebView.
 1. npm install
 1. npm start
 
-## Hou to build package (macOS Only)
+## How to build package (macOS Only)
 ### Versions
 - electron-packager 12.0.2
 
