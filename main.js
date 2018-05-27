@@ -8,7 +8,7 @@ const Menu = electron.Menu
 
 let mainWindow
 
-function createWindow() {
+const createWindow = () => {
     mainWindow = new BrowserWindow({ width: 800, height: 900 })
 
     mainWindow.loadURL(url.format({
@@ -19,20 +19,20 @@ function createWindow() {
 
     initWindowMenu()
 
-    mainWindow.on('closed', function() {
+    mainWindow.on('closed', () => {
         mainWindow = null
     })
 }
 
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
 })
 
-app.on('activate', function() {
+app.on('activate', () => {
     if (mainWindow === null) {
         createWindow()
     }
@@ -61,7 +61,7 @@ function initWindowMenu() {
                 { type: 'separator' },
                 {
                     label: 'Mobile Twitter',
-                    click: function(item, window) {
+                    click: (item, window) => {
                         window.loadURL(url.format({
                             pathname: path.join(__dirname, 'mobile.html'),
                             protocol: 'file:',
@@ -71,7 +71,7 @@ function initWindowMenu() {
                 },
                 {
                     label: 'Desktop Twitter',
-                    click: function(item, window) {
+                    click: (item, window) => {
                         window.loadURL(url.format({
                             pathname: path.join(__dirname, 'desktop.html'),
                             protocol: 'file:',
