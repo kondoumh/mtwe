@@ -8,19 +8,8 @@
 </head>
 
 <body>
-    <div id="d-webview">
-        <webview id="webview" src="https://twitter.com" autosize="on" />
-    </div>
+    <webview id="webview" src="https://twitter.com" autosize="on" />
+    <script src="renderer.js"></script>
 </body>
-
-<script>
-    const electron = require('electron')
-    onload = () => {
-        const webview = document.getElementById('webview');
-        webview.addEventListener('new-window', function(e) {
-            electron.shell.openExternal(e.url);
-        });
-    }
-</script>
 
 </html>
