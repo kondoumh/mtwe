@@ -18,7 +18,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, 'mobile.html'),
         protocol: 'file:',
         slashes: true
     }))
@@ -86,17 +86,17 @@ function initWindowMenu() {
                     label: 'Mobile Twitter',
                     click: function(item, window) {
                         window.loadURL(url.format({
-                            pathname: path.join(__dirname, 'index.html'),
+                            pathname: path.join(__dirname, 'mobile.html'),
                             protocol: 'file:',
                             slashes: true
                         }))
                     }
                 },
                 {
-                    label: 'PC Twitter',
+                    label: 'Desktop Twitter',
                     click: function(item, window) {
                         window.loadURL(url.format({
-                            pathname: path.join(__dirname, 'index-full.html'),
+                            pathname: path.join(__dirname, 'desktop.html'),
                             protocol: 'file:',
                             slashes: true
                         }))
