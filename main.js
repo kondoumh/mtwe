@@ -41,46 +41,54 @@ app.on('activate', () => {
 function initWindowMenu() {
 
     const template = [{
-            label: 'Edit',
-            submenu: [
-                { role: 'undo' },
-                { role: 'redo' },
-                { type: 'separator' },
-                { role: 'cut' },
-                { role: 'copy' },
-                { role: 'paste' },
-                { role: 'delete' },
-                { role: 'selectall' }
-            ]
-        },
-        {
-            label: 'View',
-            submenu: [
-                { role: 'reload' },
-                { role: 'toggledevtools' },
-                { type: 'separator' },
-                {
-                    label: 'Mobile Twitter',
-                    click: (item, window) => {
-                        window.loadURL(url.format({
-                            pathname: path.join(__dirname, 'mobile.html'),
-                            protocol: 'file:',
-                            slashes: true
-                        }))
-                    }
-                },
-                {
-                    label: 'Desktop Twitter',
-                    click: (item, window) => {
-                        window.loadURL(url.format({
-                            pathname: path.join(__dirname, 'desktop.html'),
-                            protocol: 'file:',
-                            slashes: true
-                        }))
-                    }
+        label: 'Edit',
+        submenu: [
+            { role: 'undo' },
+            { role: 'redo' },
+            { type: 'separator' },
+            { role: 'cut' },
+            { role: 'copy' },
+            { role: 'paste' },
+            { role: 'delete' },
+            { role: 'selectall' },
+            { type: 'separator' },
+            {
+                label: 'Search in window',
+                accelerator: 'CmdOrCtrl+F',
+                click() {
+                    mainWindow.webContents.send('toggleSearch')
                 }
-            ]
-        }
+            }
+        ]
+    },
+    {
+        label: 'View',
+        submenu: [
+            { role: 'reload' },
+            { role: 'toggledevtools' },
+            { type: 'separator' },
+            {
+                label: 'Mobile Twitter',
+                click: (item, window) => {
+                    window.loadURL(url.format({
+                        pathname: path.join(__dirname, 'mobile.html'),
+                        protocol: 'file:',
+                        slashes: true
+                    }))
+                }
+            },
+            {
+                label: 'Desktop Twitter',
+                click: (item, window) => {
+                    window.loadURL(url.format({
+                        pathname: path.join(__dirname, 'desktop.html'),
+                        protocol: 'file:',
+                        slashes: true
+                    }))
+                }
+            }
+        ]
+    }
     ]
 
     if (process.platform === 'darwin') {

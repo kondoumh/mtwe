@@ -5,3 +5,18 @@ onload = () => {
         electron.shell.openExternal(e.url);
     });
 }
+
+const {ipcRenderer} = require('electron');
+
+const ElectronSearchText = require('electron-search-text');
+const searcher = new ElectronSearchText({
+  target: '#webview',
+  input: '.search-input',
+  count: '.search-count',
+  box: '.search-box',
+  visibleClass: '.state-visible'
+});
+
+ipcRenderer.on('toggleSearch', function() {
+  searcher.emit('toggle');
+});
