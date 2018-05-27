@@ -58,6 +58,7 @@ function initWindowMenu() {
             submenu: [
                 { role: 'reload' },
                 { role: 'toggledevtools' },
+                { type: 'separator' },
                 {
                     label: 'Mobile Twitter',
                     click: function(item, window) {
