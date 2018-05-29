@@ -19,7 +19,10 @@ const searcher = new ElectronSearchText({
 
 ipcRenderer.on('toggleSearch', function() {
   searcher.emit('toggle');
+  const container = document.getElementById('main');
   if (searcher.$searchBox.className == 'search-box state-visible') {
-    console.log(searcher);
+    container.className = 'webview-container-search'
+  } else {
+    container.className = 'webview-container'
   }
 });
