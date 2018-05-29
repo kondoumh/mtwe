@@ -17,12 +17,16 @@ const searcher = new ElectronSearchText({
   visibleClass: '.state-visible'
 });
 
+const container = document.getElementById('main');
+
+searcher.on('did-finish-hide', () => {
+  container.className = 'webview-container';
+});
+
+searcher.on('did-finish-show', () => {
+  container.className = 'webview-container-search';
+});
+
 ipcRenderer.on('toggleSearch', function() {
   searcher.emit('toggle');
-  const container = document.getElementById('main');
-  if (searcher.$searchBox.className == 'search-box state-visible') {
-    container.className = 'webview-container-search'
-  } else {
-    container.className = 'webview-container'
-  }
 });
