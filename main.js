@@ -64,6 +64,21 @@ function initWindowMenu() {
     {
         label: 'View',
         submenu: [
+            {
+                label: 'go back',
+                accelerator: 'CmdOrCtrl+[',
+                click() {
+                    mainWindow.webContents.send('goBack');
+                }
+            },
+            {
+                label: 'go forward',
+                accelerator: 'CmdOrCtrl+]',
+                click() {
+                    mainWindow.webContents.send('goForward');
+                }
+            },
+            { type: 'separator' },
             { role: 'reload' },
             { role: 'toggledevtools' },
             { type: 'separator' },

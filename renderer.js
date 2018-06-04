@@ -30,3 +30,17 @@ searcher.on('did-finish-show', () => {
 ipcRenderer.on('toggleSearch', function() {
   searcher.emit('toggle');
 });
+
+const webview = document.getElementById('webview');
+
+ipcRenderer.on('goBack', () => {
+  if (webview.canGoBack()) {
+    webview.goBack();
+  }
+});
+
+ipcRenderer.on('goForward', () => {
+  if (webview.canGoForward()) {
+    webview.goForward();
+  }
+});
