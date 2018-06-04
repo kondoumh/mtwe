@@ -27,7 +27,7 @@ searcher.on('did-finish-show', () => {
   container.className = 'webview-container-search';
 });
 
-ipcRenderer.on('toggleSearch', function() {
+ipcRenderer.on('toggleSearch', () => {
   searcher.emit('toggle');
 });
 
