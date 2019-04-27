@@ -16,8 +16,8 @@
   "author": "kondoumh",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^1.8.4",
-    "electron-packager": "^12.0.2"
+    "electron": "^5.0.0",
+    "electron-packager": "^13.1.1"
   },
   "dependencies": {
     "electron-search-text": "^0.3.0"

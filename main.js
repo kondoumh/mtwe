@@ -9,7 +9,13 @@ const Menu = electron.Menu;
 let mainWindow;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 900 });
+  mainWindow = new BrowserWindow({
+    webPreferences: {
+      webviewTag: true,
+      nodeIntegration: true
+    },
+    width: 800, height: 900
+  });
 
   mainWindow.loadURL(
     url.format({
