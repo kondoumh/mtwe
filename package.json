@@ -20,7 +20,6 @@
     "electron-packager": "^14.0.0"
   },
   "dependencies": {
-    "electron-search-text": "^0.3.0",
-    "lodash": ">=4.17.11"
+    "electron-search-text": "^0.3.0"
   }
 }
