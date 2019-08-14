@@ -1,6 +1,7 @@
 const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const Store = require("electron-store");
 
 const path = require("path");
 const url = require("url");
@@ -8,13 +9,33 @@ const Menu = electron.Menu;
 
 let mainWindow;
 
+const store = new Store({
+  defaults: {
+    bounds: {
+      width: 600,
+      height: 700,
+    },
+  },
+});
+
 const createWindow = () => {
+  let {width, height, x, y} = store.get("bounds");
+  const displays = electron.screen.getAllDisplays();
+  const activeDisplay = displays.find((display) => {
+    return display.bounds.x <= x && display.bounds.y <= y &&
+      display.bounds.x + display.bounds.width >= x &&
+      display.bounds.y + display.bounds.height >= y;
+  });
+  if (!activeDisplay) {
+    x = 50; y = 10; width = 600, height = 700;
+  }
+
   mainWindow = new BrowserWindow({
     webPreferences: {
       webviewTag: true,
       nodeIntegration: true
     },
-    width: 800, height: 900
+    width: width, height: height, x: x, y: y
   });
 
   mainWindow.loadURL(
@@ -24,6 +45,12 @@ const createWindow = () => {
       slashes: true
     })
   );
+
+  ['resize', 'move'].forEach(e => {
+    mainWindow.on(e, () => {
+        store.set('bounds', mainWindow.getBounds());
+    });
+  })
 
   initWindowMenu();
 
