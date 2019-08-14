@@ -1,12 +1,26 @@
-const electron = require("electron");
+const { electron, shell } = require("electron");
 
 const webview = document.querySelector("#webview");
 const container = document.querySelector("#main");
+const contextMenu = require("electron-context-menu");
 
 onload = () => {
   const webview = document.querySelector("#webview");
   webview.addEventListener("new-window", e => {
     electron.shell.openExternal(e.url);
+  });
+  contextMenu({
+    window: webview,
+    prepend: (actions, params, webview) => [
+      {
+        label: "Search on Google \"" + params.selectionText + "\"",
+        click: () => {
+          url = "https://www.google.com/search?q=" + params.selectionText;
+          shell.openExternal(url);
+        },
+        visible: params.selectionText !== ""
+      }
+    ]
   });
 };
 
@@ -20,7 +34,6 @@ const searcher = new ElectronSearchText({
   box: ".search-box",
   visibleClass: ".state-visible"
 });
-
 
 searcher.on("did-finish-hide", () => {
   container.className = "webview-container";
