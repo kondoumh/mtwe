@@ -1,7 +1,7 @@
 {
   "name": "mtwe",
-  "version": "0.1.0",
-  "description": "Mobile Twitter in Electron",
+  "version": "0.2.0",
+  "description": "Twitter in Electron",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
