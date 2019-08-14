@@ -9,9 +9,17 @@ onload = () => {
   webview.addEventListener("new-window", e => {
     electron.shell.openExternal(e.url);
   });
+  webview.addEventListener("new-window", e => {
+    shell.openExternal(e.url);
+  });
   contextMenu({
     window: webview,
     prepend: (actions, params, webview) => [
+      {
+        label: "Open with browser",
+        click: () => { shell.openExternal(params.linkURL); },
+        visible: params.linkURL && (params.mediaType === "none" || params.mediaType === "image")
+      },
       {
         label: "Search on Google \"" + params.selectionText + "\"",
         click: () => {
