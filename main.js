@@ -19,7 +19,7 @@ const createWindow = () => {
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "mobile.html"),
+      pathname: path.join(__dirname, "desktop.html"),
       protocol: "file:",
       slashes: true
     })
@@ -59,14 +59,6 @@ function initWindowMenu() {
         { role: "paste" },
         { role: "delete" },
         { role: "selectall" },
-        { type: "separator" },
-        {
-          label: "Search in window",
-          accelerator: "CmdOrCtrl+F",
-          click() {
-            mainWindow.webContents.send("toggleSearch");
-          }
-        }
       ]
     },
     {
@@ -88,32 +80,15 @@ function initWindowMenu() {
         },
         { type: "separator" },
         { role: "reload" },
-        { role: "toggledevtools" },
         { type: "separator" },
         {
-          label: "Mobile Twitter",
-          click: (item, window) => {
-            window.loadURL(
-              url.format({
-                pathname: path.join(__dirname, "mobile.html"),
-                protocol: "file:",
-                slashes: true
-              })
-            );
+          label: "Search in window",
+          accelerator: "CmdOrCtrl+F",
+          click() {
+            mainWindow.webContents.send("toggleSearch");
           }
         },
-        {
-          label: "Desktop Twitter",
-          click: (item, window) => {
-            window.loadURL(
-              url.format({
-                pathname: path.join(__dirname, "desktop.html"),
-                protocol: "file:",
-                slashes: true
-              })
-            );
-          }
-        }
+        { role: "toggledevtools" }
       ]
     }
   ];
