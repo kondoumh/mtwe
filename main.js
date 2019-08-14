@@ -78,7 +78,6 @@ function initWindowMenu() {
             mainWindow.webContents.send("goForward");
           }
         },
-        { type: "separator" },
         { role: "reload" },
         { type: "separator" },
         {
@@ -87,11 +86,26 @@ function initWindowMenu() {
           click() {
             mainWindow.webContents.send("toggleSearch");
           }
-        },
-        { role: "toggledevtools" }
+        }
       ]
     }
   ];
+
+  if (!app.isPackaged) {
+    template.unshift({
+      label: "Debug",
+      submenu: [
+        { role: "forceReload"},
+        { role: "toggledevtools" },
+        { 
+          label: "open devTools for WebView",
+          click () {
+            mainWindow.webContents.send("openDevToolsForWebView");
+          }
+        }
+      ]
+    });
+  }
 
   if (process.platform === "darwin") {
     template.unshift({

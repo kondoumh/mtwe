@@ -1,6 +1,10 @@
 const electron = require("electron");
+
+const webview = document.querySelector("#webview");
+const container = document.querySelector("#main");
+
 onload = () => {
-  const webview = document.getElementById("webview");
+  const webview = document.querySelector("#webview");
   webview.addEventListener("new-window", e => {
     electron.shell.openExternal(e.url);
   });
@@ -17,7 +21,6 @@ const searcher = new ElectronSearchText({
   visibleClass: ".state-visible"
 });
 
-const container = document.getElementById("main");
 
 searcher.on("did-finish-hide", () => {
   container.className = "webview-container";
@@ -31,8 +34,6 @@ ipcRenderer.on("toggleSearch", () => {
   searcher.emit("toggle");
 });
 
-const webview = document.getElementById("webview");
-
 ipcRenderer.on("goBack", () => {
   if (webview.canGoBack()) {
     webview.goBack();
@@ -43,4 +44,8 @@ ipcRenderer.on("goForward", () => {
   if (webview.canGoForward()) {
     webview.goForward();
   }
+});
+
+ipcRenderer.on("openDevToolsForWebView", () => {
+  webview.openDevTools();
 });
