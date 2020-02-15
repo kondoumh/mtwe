@@ -3,10 +3,13 @@
   "version": "0.2.0",
   "description": "Twitter in Electron",
   "main": "main.js",
+  "build": {
+    "productName": "mtwe",
+    "appId": "mtwe"
+  },
   "scripts": {
     "start": "electron .",
-    "package-macos": "electron-packager . mtwe --platform=darwin --arch=x64 --overwrite",
-    "package-win32": "electron-packager . mtwe --platform=win32 --arch=x64 --overwrite"
+    "pack": "electron-builder --dir"
   },
   "repository": "https://github.com/kondoumh/mtwe",
   "keywords": [
@@ -17,7 +20,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^8.0.1",
-    "electron-packager": "^14.2.1"
+    "electron-builder": "^22.3.2"
   },
   "dependencies": {
     "electron-context-menu": "^0.14.0",
