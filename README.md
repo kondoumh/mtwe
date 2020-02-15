@@ -2,7 +2,7 @@
 Twitter Client uses Electron WebView.
 
 ## Features
-- Switch mobile.twitter.com and twitter.com
+- Search box in window
 - Reload Screen
 
 ## How to run
