@@ -5,7 +5,13 @@
   "main": "main.js",
   "build": {
     "productName": "mtwe",
-    "appId": "mtwe"
+    "appId": "mtwe",
+    "mac": {
+      "icon": "icons/mac/icon.icns"
+    },
+    "win": {
+      "icon": "icons/win/icon.ico"
+    }
   },
   "scripts": {
     "start": "electron .",
