@@ -1,5 +1,5 @@
-# Mobile Twitter in Electron
-Twitter Client uses Electron WebView.
+# Twitter client by Electron
+Twitter client uses Electron WebView.
 
 ## Features
 - Search box in window
@@ -16,4 +16,4 @@ Twitter Client uses Electron WebView.
 
 ## How to build package
 1. npm run pack
-1. binary will be generated in ./mac or ./windows
+1. binary will be generated in .dist/mac or .dist/win-unpacked
