@@ -29,6 +29,7 @@
     "electron-builder": "^22.4.0"
   },
   "dependencies": {
+    "about-window": "^1.13.2",
     "electron-context-menu": "^0.16.0",
     "electron-search-text": "^0.3.0",
     "electron-store": "^5.1.1"

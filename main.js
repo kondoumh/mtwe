@@ -6,6 +6,7 @@ const Store = require("electron-store");
 const path = require("path");
 const url = require("url");
 const Menu = electron.Menu;
+const openAboutWindow = require("about-window").default
 
 let mainWindow;
 
@@ -139,7 +140,12 @@ function initWindowMenu() {
     template.unshift({
       label: app.name,
       submenu: [
-        { role: "about" },
+        {
+          label: "About mtwe",
+          click() {
+            showAboutWindow();
+          }
+        },
         { type: "separator" },
         { role: "services", submenu: [] },
         { type: "separator" },
@@ -150,8 +156,28 @@ function initWindowMenu() {
         { role: "quit" }
       ]
     });
+  } else {
+    template.push({
+      label: "help",
+      submenu: [
+        {
+          label: "About mtwe",
+          click() {
+            showAboutWindow();
+          }
+        }
+      ]
+    })
   }
 
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
+}
+
+function showAboutWindow() {
+  openAboutWindow({
+    icon_path: __dirname + path.sep + "icons/png/512x512.png",
+    copyright: 'Copyright (c) 2019 kondoumh',
+    package_json_dir: __dirname + path.sep
+  });
 }
