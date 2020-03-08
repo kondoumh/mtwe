@@ -4,6 +4,8 @@ const webview = document.querySelector("#webview");
 const container = document.querySelector("#main");
 const contextMenu = require("electron-context-menu");
 
+let refreshIntervalId;
+
 onload = () => {
   const webview = document.querySelector("#webview");
   webview.addEventListener("new-window", e => {
@@ -30,7 +32,6 @@ onload = () => {
       }
     ]
   });
-  setInterval(clickHome, 10000);
 };
 
 const { ipcRenderer } = require("electron");
@@ -72,6 +73,15 @@ ipcRenderer.on("openDevToolsForWebView", () => {
   webview.openDevTools();
 });
 
-async function clickHome() {
-  await webview.executeJavaScript('document.querySelector("a[data-testid]").click();', false);
+ipcRenderer.on("autoRefresh", (sender, arg) => {
+  if (arg === "start") {
+    refreshIntervalId = setInterval(clickHome, 10000);
+  } else {
+    clearInterval(refreshIntervalId);
+  }
+});
+
+function clickHome() {
+  webview.executeJavaScript('document.querySelector("a[data-testid]").click();');
+  webview.executeJavaScript('console.log("refreshing");');
 }

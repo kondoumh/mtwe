@@ -108,6 +108,19 @@ function initWindowMenu() {
           }
         },
         { role: "reload" },
+        {
+          label: "Auto refresh",
+          id: "autoRefresh",
+          type: "checkbox",
+          click() {
+            const checked = Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked;
+            if (checked) {
+              mainWindow.webContents.send("autoRefresh", "start");
+            } else {
+              mainWindow.webContents.send("autoRefresh", "stop");
+            }
+          }
+        },
         { type: "separator" },
         {
           label: "Search in window",
