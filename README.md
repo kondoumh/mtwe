@@ -2,8 +2,8 @@
 Twitter client uses Electron WebView.
 
 ## Features
+- Auto refresh timeline
 - Search box in window
-- Reload Screen
 
 ## How to run
 ### Requirement
