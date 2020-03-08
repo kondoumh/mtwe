@@ -30,6 +30,7 @@ onload = () => {
       }
     ]
   });
+  setInterval(clickHome, 10000);
 };
 
 const { ipcRenderer } = require("electron");
@@ -70,3 +71,7 @@ ipcRenderer.on("goForward", () => {
 ipcRenderer.on("openDevToolsForWebView", () => {
   webview.openDevTools();
 });
+
+async function clickHome() {
+  await webview.executeJavaScript('document.querySelector("a[data-testid]").click();', false);
+}
