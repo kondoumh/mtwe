@@ -32,6 +32,7 @@ onload = () => {
       }
     ]
   });
+  toggleAri(false);
 };
 
 const { ipcRenderer } = require("electron");
@@ -76,12 +77,25 @@ ipcRenderer.on("openDevToolsForWebView", () => {
 ipcRenderer.on("autoRefresh", (sender, arg) => {
   if (arg === "start") {
     refreshIntervalId = setInterval(clickHome, 10000);
+    toggleAri(true);
   } else {
     clearInterval(refreshIntervalId);
+    toggleAri(false);
   }
 });
 
 function clickHome() {
   webview.executeJavaScript('if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") { document.querySelector("a[data-testid]").click(); }');
   webview.executeJavaScript('console.log("refreshing");');
+}
+
+function toggleAri(on) {
+  ari = document.querySelector("#ari");
+  if (on) {
+    ari.title = "Timeline auto-refresh : on";
+    ari.style.backgroundColor = "aquamarine";
+  } else {
+    ari.title = "Timeline auto-refresh : off";
+    ari.style.backgroundColor = "antiquewhite";
+  }
 }
