@@ -112,6 +112,7 @@ function initWindowMenu() {
           label: "Auto refresh",
           id: "autoRefresh",
           type: "checkbox",
+          accelerator: "CmdOrCtrl+M",
           click() {
             const checked = Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked;
             if (checked) {
