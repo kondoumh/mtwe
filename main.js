@@ -1,6 +1,7 @@
 const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
 const Store = require("electron-store");
 
 const path = require("path");
@@ -195,3 +196,7 @@ function showAboutWindow() {
     package_json_dir: __dirname + path.sep
   });
 }
+
+ipcMain.on("aron", (s, checked) => {
+  Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked = checked;
+});
