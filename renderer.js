@@ -79,7 +79,6 @@ ipcRenderer.on("autoRefresh", (sender, on) => {
     refreshIntervalId = setInterval(clickHome, 10000);
     indicateAutoRefresh(true);
   } else {
-    autoRefresh = false;
     clearInterval(refreshIntervalId);
     indicateAutoRefresh(false);
   }
