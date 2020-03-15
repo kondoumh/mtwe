@@ -74,8 +74,8 @@ ipcRenderer.on("openDevToolsForWebView", () => {
   webview.openDevTools();
 });
 
-ipcRenderer.on("autoRefresh", (sender, arg) => {
-  if (arg === "start") {
+ipcRenderer.on("autoRefresh", (sender, on) => {
+  if (on) {
     refreshIntervalId = setInterval(clickHome, 10000);
     indicateAutoRefresh(true);
   } else {
@@ -90,9 +90,9 @@ function clickHome() {
     'if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") { console.log("refreshing"); document.querySelector("a[data-testid]").click(); }');
 }
 
-function indicateAutoRefresh(on) {
+function indicateAutoRefresh(autoRefresh) {
   ari = document.querySelector("#ari");
-  if (on) {
+  if (autoRefresh) {
     ari.title = "Timeline auto-refresh : on";
     ari.style.backgroundColor = "aquamarine";
   } else {

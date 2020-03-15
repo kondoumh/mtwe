@@ -116,9 +116,9 @@ function initWindowMenu() {
           click() {
             const checked = Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked;
             if (checked) {
-              mainWindow.webContents.send("autoRefresh", "start");
+              mainWindow.webContents.send("autoRefresh", true);
             } else {
-              mainWindow.webContents.send("autoRefresh", "stop");
+              mainWindow.webContents.send("autoRefresh", false);
             }
           }
         },
