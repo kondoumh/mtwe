@@ -86,8 +86,8 @@ ipcRenderer.on("autoRefresh", (sender, arg) => {
 });
 
 function clickHome() {
-  webview.executeJavaScript('if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") { document.querySelector("a[data-testid]").click(); }');
-  webview.executeJavaScript('console.log("refreshing");');
+  webview.executeJavaScript(
+    'if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") { console.log("refreshing"); document.querySelector("a[data-testid]").click(); }');
 }
 
 function indicateAutoRefresh(on) {
