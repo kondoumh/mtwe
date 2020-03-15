@@ -4,7 +4,6 @@ const webview = document.querySelector("#webview");
 const container = document.querySelector("#main");
 const contextMenu = require("electron-context-menu");
 
-let autoRefresh = false;
 let refreshIntervalId;
 
 onload = () => {
@@ -33,12 +32,7 @@ onload = () => {
       }
     ]
   });
-  const ari = document.querySelector("#ari");
-  ari.addEventListener("click", () => {
-    autoRefresh = !autoRefresh;
-    toggleAri()
-  });
-  toggleAri();
+  indicateAutoRefresh(false);
 };
 
 const { ipcRenderer } = require("electron");
@@ -82,13 +76,13 @@ ipcRenderer.on("openDevToolsForWebView", () => {
 
 ipcRenderer.on("autoRefresh", (sender, arg) => {
   if (arg === "start") {
-    autoRefresh = true;
     refreshIntervalId = setInterval(clickHome, 10000);
+    indicateAutoRefresh(true);
   } else {
     autoRefresh = false;
     clearInterval(refreshIntervalId);
+    indicateAutoRefresh(false);
   }
-  toggleAri();
 });
 
 function clickHome() {
@@ -96,15 +90,13 @@ function clickHome() {
   webview.executeJavaScript('console.log("refreshing");');
 }
 
-function toggleAri() {
+function indicateAutoRefresh(on) {
   ari = document.querySelector("#ari");
-  if (autoRefresh) {
+  if (on) {
     ari.title = "Timeline auto-refresh : on";
     ari.style.backgroundColor = "aquamarine";
-    ipcRenderer.send("aron", true);
   } else {
     ari.title = "Timeline auto-refresh : off";
     ari.style.backgroundColor = "antiquewhite";
-    ipcRenderer.send("aron", false);
   }
 }

@@ -196,7 +196,3 @@ function showAboutWindow() {
     package_json_dir: __dirname + path.sep
   });
 }
-
-ipcMain.on("aron", (s, checked) => {
-  Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked = checked;
-});
