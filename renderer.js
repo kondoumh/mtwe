@@ -76,7 +76,7 @@ ipcRenderer.on("openDevToolsForWebView", () => {
 
 ipcRenderer.on("autoRefresh", (sender, on) => {
   if (on) {
-    refreshIntervalId = setInterval(clickHome, 10000);
+    refreshIntervalId = setInterval(clickHome, 15000);
     indicateAutoRefresh(true);
   } else {
     clearInterval(refreshIntervalId);
