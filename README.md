@@ -1,6 +1,8 @@
 # Twitter client by Electron
 Twitter client uses Electron WebView.
 
+![icon](https://raw.githubusercontent.com/kondoumh/mtwe/master/icons/png/128x128.png)
+
 ## Features
 - Auto refresh timeline
 - Search box in window
