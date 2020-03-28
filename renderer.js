@@ -14,6 +14,10 @@ onload = () => {
   webview.addEventListener("new-window", e => {
     shell.openExternal(e.url);
   });
+  const ari = document.querySelector("#ari");
+  ari.addEventListener("click", () => {
+    ipcRenderer.send("toggleAr");
+  });
   contextMenu({
     window: webview,
     prepend: (actions, params, webview) => [

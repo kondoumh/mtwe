@@ -1,5 +1,6 @@
 const electron = require("electron");
 const app = electron.app;
+const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 const Store = require("electron-store");
 
@@ -112,7 +113,7 @@ function initWindowMenu() {
           label: "Auto refresh",
           id: "autoRefresh",
           type: "checkbox",
-          accelerator: "CmdOrCtrl+M",
+          accelerator: "CmdOrCtrl+E",
           click() {
             const checked = Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked;
             if (checked) {
@@ -195,3 +196,8 @@ function showAboutWindow() {
     package_json_dir: __dirname + path.sep
   });
 }
+
+ipcMain.on("toggleAr", () => {
+  const menu = Menu.getApplicationMenu().getMenuItemById("autoRefresh");
+  menu.click();
+});
