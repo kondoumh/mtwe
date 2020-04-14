@@ -7,15 +7,20 @@ Twitter client uses Electron WebView.
 - Auto refresh timeline
 - Search box in window
 
-## How to run
-### Requirement
-- Node.js v12
+## Requirement
+Node.js v12
 
-### run
-1. git clone or download zip.
-1. npm install
-1. npm start
+## Run
+```
+git clone # or download zip.
+npm install
+npm start
+```
 
-## How to build package
-1. npm run pack
-1. binary will be generated in .dist/mac or .dist/win-unpacked
+## Build exectable binary
+```
+npm install
+npm run pack
+```
+
+Binary will be generated in .dist/mac or .dist/win-unpacked
