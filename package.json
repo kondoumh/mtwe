@@ -25,13 +25,13 @@
   "author": "kondoumh",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^8.2.0",
-    "electron-builder": "^22.4.1",
+    "electron": "^8.2.3",
+    "electron-builder": "^22.5.1",
     "minimist": ">=1.2.2"
   },
   "dependencies": {
     "about-window": "^1.13.2",
-    "electron-context-menu": "^0.16.0",
+    "electron-context-menu": "^1.0.0",
     "electron-search-text": "^0.3.0",
     "electron-store": "^5.1.1"
   }
