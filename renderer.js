@@ -90,7 +90,15 @@ ipcRenderer.on("autoRefresh", (sender, on) => {
 
 function clickHome() {
   webview.executeJavaScript(
-    'if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") { console.log("refreshing"); document.querySelector("a[data-testid]").click(); }');
+    (function(){
+      if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") {
+        console.log(document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div").style.paddingTop);
+        if (document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div").style.paddingTop === "0px") {
+          console.log("refreshing"); document.querySelector("a[data-testid]").click();
+        }
+      }
+    }).toString().replace(/function\s*\(\)\{/, "").replace(/}$/,"").trim()
+  );
 }
 
 function indicateAutoRefresh(autoRefresh) {
