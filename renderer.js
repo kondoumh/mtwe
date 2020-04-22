@@ -92,8 +92,8 @@ function clickHome() {
   webview.executeJavaScript(
     (function(){
       if (document.querySelector("h1[aria-level]").innerHTML === "ホームタイムライン") {
-        console.log(document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div").style.paddingTop);
-        if (document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div").style.paddingTop === "0px") {
+        console.log(document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div:nth-child(1)").style.transform);
+        if (document.querySelector("#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-1pi2tsx.r-13qz1uu.r-417010 > main > div > div > div > div > div > div.css-1dbjc4n.r-1jgb5lz.r-1ye8kvj.r-13qz1uu > div > div > section > div > div > div:nth-child(1)").style.transform === "translateY(0px)") {
           console.log("refreshing"); document.querySelector("a[data-testid]").click();
         }
       }
