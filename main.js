@@ -124,6 +124,12 @@ function initWindowMenu() {
           }
         },
         { type: "separator" },
+        { 
+          label: "open devTools for WebView",
+          click () {
+            mainWindow.webContents.send("openDevToolsForWebView");
+          }
+        },
         {
           label: "Search in window",
           accelerator: "CmdOrCtrl+F",
@@ -140,13 +146,7 @@ function initWindowMenu() {
       label: "Debug",
       submenu: [
         { role: "forceReload"},
-        { role: "toggledevtools" },
-        { 
-          label: "open devTools for WebView",
-          click () {
-            mainWindow.webContents.send("openDevToolsForWebView");
-          }
-        }
+        { role: "toggledevtools" }
       ]
     });
   }
