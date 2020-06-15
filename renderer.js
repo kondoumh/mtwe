@@ -18,6 +18,10 @@ onload = () => {
   ari.addEventListener("click", () => {
     ipcRenderer.send("toggleAr");
   });
+  indicateAutoRefresh(false);
+};
+
+webview.addEventListener("dom-ready", () => {
   contextMenu({
     window: webview,
     prepend: (actions, params, webview) => [
@@ -36,8 +40,7 @@ onload = () => {
       }
     ]
   });
-  indicateAutoRefresh(false);
-};
+});
 
 const { ipcRenderer } = require("electron");
 
