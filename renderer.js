@@ -7,6 +7,10 @@ const contextMenu = require("electron-context-menu");
 let refreshIntervalId;
 
 onload = () => {
+  webview.addEventListener("new-window", e => {
+    shell.openExternal(e.url);
+  });
+
   const ari = document.querySelector("#ari");
   ari.addEventListener("click", () => {
     ipcRenderer.send("toggleAr");
@@ -15,12 +19,6 @@ onload = () => {
 };
 
 webview.addEventListener("dom-ready", () => {
-  webview.addEventListener("new-window", e => {
-    electron.shell.openExternal(e.url);
-  });
-  webview.addEventListener("new-window", e => {
-    shell.openExternal(e.url);
-  });  
   contextMenu({
     window: webview,
     prepend: (actions, params, webview) => [
