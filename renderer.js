@@ -7,13 +7,6 @@ const contextMenu = require("electron-context-menu");
 let refreshIntervalId;
 
 onload = () => {
-  const webview = document.querySelector("#webview");
-  webview.addEventListener("new-window", e => {
-    electron.shell.openExternal(e.url);
-  });
-  webview.addEventListener("new-window", e => {
-    shell.openExternal(e.url);
-  });
   const ari = document.querySelector("#ari");
   ari.addEventListener("click", () => {
     ipcRenderer.send("toggleAr");
@@ -22,6 +15,12 @@ onload = () => {
 };
 
 webview.addEventListener("dom-ready", () => {
+  webview.addEventListener("new-window", e => {
+    electron.shell.openExternal(e.url);
+  });
+  webview.addEventListener("new-window", e => {
+    shell.openExternal(e.url);
+  });  
   contextMenu({
     window: webview,
     prepend: (actions, params, webview) => [
@@ -29,14 +28,6 @@ webview.addEventListener("dom-ready", () => {
         label: "Open with browser",
         click: () => { shell.openExternal(params.linkURL); },
         visible: params.linkURL && (params.mediaType === "none" || params.mediaType === "image")
-      },
-      {
-        label: "Search on Google \"" + params.selectionText + "\"",
-        click: () => {
-          url = "https://www.google.com/search?q=" + params.selectionText;
-          shell.openExternal(url);
-        },
-        visible: params.selectionText !== ""
       }
     ]
   });
