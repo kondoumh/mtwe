@@ -29,6 +29,7 @@
     "cpx": "^1.5.0",
     "electron": "^9.0.4",
     "electron-builder": "^22.7.0",
+    "braces": ">=2.3.1",
     "minimist": ">=1.2.2"
   },
   "dependencies": {
