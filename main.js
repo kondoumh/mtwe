@@ -138,6 +138,12 @@ function initWindowMenu() {
           click() {
             mainWindow.webContents.send("toggleSearch");
           }
+        },
+        {
+          label: "Disable popup",
+          click() {
+            mainWindow.webContents.send("disablePopup");
+          }
         }
       ]
     }

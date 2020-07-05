@@ -1,4 +1,4 @@
-const { electron, shell } = require("electron");
+const { electron, shell, clipboard } = require("electron");
 
 const webview = document.querySelector("#webview");
 const container = document.querySelector("#main");
@@ -101,3 +101,8 @@ function indicateAutoRefresh(autoRefresh) {
     ari.style.backgroundColor = "antiquewhite";
   }
 }
+
+ipcRenderer.on("disablePopup", () => {
+  clipboard.writeText("document.removeEventListener('mouseover', getEventListeners(document).mouseover[0].listener);");
+  alert("Code to disable copied. Open devtools for WebView and paste to console.");
+});
