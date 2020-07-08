@@ -15,8 +15,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "patch": "cpx patch/index.js node_modules/electron-context-menu",
-    "pack": "cpx patch/index.js node_modules/electron-context-menu && electron-builder --dir"
+    "pack": "electron-builder --dir"
   },
   "repository": "https://github.com/kondoumh/mtwe",
   "keywords": [
@@ -26,15 +25,14 @@
   "author": "kondoumh",
   "license": "MIT",
   "devDependencies": {
-    "cpx": "^1.5.0",
-    "electron": "^9.0.4",
-    "electron-builder": "^22.7.0",
     "braces": ">=2.3.1",
+    "electron": "^9.1.0",
+    "electron-builder": "^22.7.0",
     "minimist": ">=1.2.2"
   },
   "dependencies": {
     "about-window": "^1.13.4",
-    "electron-context-menu": "^2.0.1",
+    "electron-context-menu": "^2.1.0",
     "electron-search-text": "^0.3.0",
     "electron-store": "^5.2.0"
   }
