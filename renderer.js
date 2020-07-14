@@ -105,4 +105,5 @@ function indicateAutoRefresh(autoRefresh) {
 ipcRenderer.on("disablePopup", () => {
   clipboard.writeText("document.removeEventListener('mouseover', getEventListeners(document).mouseover[0].listener);");
   alert("Code to disable copied. Open devtools for WebView and paste to console.");
+  webview.openDevTools();
 });
