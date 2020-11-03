@@ -20,6 +20,8 @@ const store = new Store({
   },
 });
 
+app.commandLine.appendSwitch("disable-features", "CrossOriginOpenerPolicy");
+
 const createWindow = () => {
   let {width, height, x, y} = store.get("bounds");
   const displays = electron.screen.getAllDisplays();
