@@ -38,7 +38,8 @@ const createWindow = () => {
     webPreferences: {
       webviewTag: true,
       nodeIntegration: true,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      contextIsolation: false
     },
     width: width, height: height, x: x, y: y
   });
