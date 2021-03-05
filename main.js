@@ -203,7 +203,10 @@ function showAboutWindow() {
   openAboutWindow({
     icon_path: path.join(__dirname, "icons/png/512x512.png"),
     copyright: 'Copyright (c) 2019 kondoumh',
-    package_json_dir: path.join(__dirname, "/")
+    package_json_dir: path.join(__dirname, "/"),
+    win_options: {
+      parent: mainWindow,
+    }
   });
 }
 
