@@ -2,7 +2,6 @@ const { electron, shell, clipboard } = require("electron");
 
 const webview = document.querySelector("#webview");
 const container = document.querySelector("#main");
-const contextMenu = require("electron-context-menu");
 
 let refreshIntervalId;
 
@@ -18,20 +17,11 @@ onload = () => {
   indicateAutoRefresh(false);
 };
 
-webview.addEventListener("dom-ready", () => {
-  contextMenu({
-    window: webview,
-    prepend: (actions, params, webview) => [
-      {
-        label: "Open with browser",
-        click: () => { shell.openExternal(params.linkURL); },
-        visible: params.linkURL && (params.mediaType === "none" || params.mediaType === "image")
-      }
-    ]
-  });
-});
-
 const { ipcRenderer } = require("electron");
+
+webview.addEventListener("dom-ready", () => {
+  ipcRenderer.send("webview-ready", webview.getURL());
+});
 
 const ElectronSearchText = require("electron-search-text");
 const searcher = new ElectronSearchText({

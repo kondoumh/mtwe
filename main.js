@@ -2,12 +2,15 @@ const electron = require("electron");
 const app = electron.app;
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
-const Store = require("electron-store");
+const Menu = electron.Menu;
+const webContents = electron.webContents;
 
+const Store = require("electron-store");
 const path = require("path");
 const url = require("url");
-const Menu = electron.Menu;
+
 const openAboutWindow = require("about-window").default
+const contextMenu = require("electron-context-menu");
 
 let mainWindow;
 
@@ -38,7 +41,6 @@ const createWindow = () => {
     webPreferences: {
       webviewTag: true,
       nodeIntegration: true,
-      enableRemoteModule: true,
       contextIsolation: false
     },
     width: width, height: height, x: x, y: y
@@ -209,6 +211,21 @@ function showAboutWindow() {
     }
   });
 }
+
+ipcMain.on("webview-ready", (e, url) => {
+  const contents = webContents.getAllWebContents().filter(c => !c.getURL().startsWith('file://'));
+  const content = contents.find(c => c.getURL() === url);
+  contextMenu({
+    window: content,
+    prepend: (actions, params) => [
+      {
+        label: "Open with browser",
+        click: () => { shell.openExternal(params.linkURL); },
+        visible: params.linkURL && (params.mediaType === "none" || params.mediaType === "image")
+      }
+    ]
+  });
+});
 
 ipcMain.on("toggleAr", () => {
   const menu = Menu.getApplicationMenu().getMenuItemById("autoRefresh");
