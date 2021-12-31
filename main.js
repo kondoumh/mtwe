@@ -1,16 +1,16 @@
-const electron = require("electron");
+const electron = require('electron');
 const app = electron.app;
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 const webContents = electron.webContents;
 
-const Store = require("electron-store");
-const path = require("path");
-const url = require("url");
+const Store = require('electron-store');
+const path = require('path');
+const url = require('url');
 
-const openAboutWindow = require("about-window").default
-const contextMenu = require("electron-context-menu");
+const openAboutWindow = require('about-window').default
+const contextMenu = require('electron-context-menu');
 
 let mainWindow;
 
@@ -23,10 +23,10 @@ const store = new Store({
   },
 });
 
-app.commandLine.appendSwitch("disable-features", "CrossOriginOpenerPolicy");
+app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicy');
 
 const createWindow = () => {
-  let {width, height, x, y} = store.get("bounds");
+  let {width, height, x, y} = store.get('bounds');
   const displays = electron.screen.getAllDisplays();
   const activeDisplay = displays.find((display) => {
     return display.bounds.x <= x && display.bounds.y <= y &&
@@ -48,8 +48,8 @@ const createWindow = () => {
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, "desktop.html"),
-      protocol: "file:",
+      pathname: path.join(__dirname, 'desktop.html'),
+      protocol: 'file:',
       slashes: true
     })
   );
@@ -62,21 +62,21 @@ const createWindow = () => {
 
   initWindowMenu();
 
-  mainWindow.on("closed", () => {
+  mainWindow.on('closed', () => {
     mainWindow = null;
   });
 };
 
 app.allowRendererProcessReuse = false;
-app.on("ready", createWindow);
+app.on('ready', createWindow);
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on("activate", () => {
+app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
@@ -85,69 +85,69 @@ app.on("activate", () => {
 function initWindowMenu() {
   const template = [
     {
-      label: "Edit",
+      label: 'Edit',
       submenu: [
-        { role: "undo" },
-        { role: "redo" },
-        { type: "separator" },
-        { role: "cut" },
-        { role: "copy" },
-        { role: "paste" },
-        { role: "delete" },
-        { role: "selectall" },
+        { role: 'undo' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'delete' },
+        { role: 'selectall' },
       ]
     },
     {
-      label: "View",
+      label: 'View',
       submenu: [
         {
-          label: "go back",
-          accelerator: "CmdOrCtrl+[",
+          label: 'go back',
+          accelerator: 'CmdOrCtrl+[',
           click() {
-            mainWindow.webContents.send("goBack");
+            mainWindow.webContents.send('goBack');
           }
         },
         {
-          label: "go forward",
-          accelerator: "CmdOrCtrl+]",
+          label: 'go forward',
+          accelerator: 'CmdOrCtrl+]',
           click() {
-            mainWindow.webContents.send("goForward");
+            mainWindow.webContents.send('goForward');
           }
         },
-        { role: "reload" },
+        { role: 'reload' },
         {
-          label: "Auto refresh",
-          id: "autoRefresh",
-          type: "checkbox",
-          accelerator: "CmdOrCtrl+E",
+          label: 'Auto refresh',
+          id: 'autoRefresh',
+          type: 'checkbox',
+          accelerator: 'CmdOrCtrl+E',
           click() {
-            const checked = Menu.getApplicationMenu().getMenuItemById("autoRefresh").checked;
+            const checked = Menu.getApplicationMenu().getMenuItemById('autoRefresh').checked;
             if (checked) {
-              mainWindow.webContents.send("autoRefresh", true);
+              mainWindow.webContents.send('autoRefresh', true);
             } else {
-              mainWindow.webContents.send("autoRefresh", false);
+              mainWindow.webContents.send('autoRefresh', false);
             }
           }
         },
-        { type: "separator" },
+        { type: 'separator' },
         { 
-          label: "open devTools for WebView",
+          label: 'open devTools for WebView',
           click () {
-            mainWindow.webContents.send("openDevToolsForWebView");
+            mainWindow.webContents.send('openDevToolsForWebView');
           }
         },
-        { role: "toggledevtools" },
+        { role: 'toggledevtools' },
         {
-          label: "Search in window",
-          accelerator: "CmdOrCtrl+F",
+          label: 'Search in window',
+          accelerator: 'CmdOrCtrl+F',
           click() {
-            mainWindow.webContents.send("toggleSearch");
+            mainWindow.webContents.send('toggleSearch');
           }
         },
         {
-          label: "Disable popup",
+          label: 'Disable popup',
           click() {
-            mainWindow.webContents.send("disablePopup");
+            mainWindow.webContents.send('disablePopup');
           }
         }
       ]
@@ -156,39 +156,39 @@ function initWindowMenu() {
 
   if (!app.isPackaged) {
     template.unshift({
-      label: "Debug",
+      label: 'Debug',
       submenu: [
-        { role: "forceReload"},
+        { role: 'forceReload'},
       ]
     });
   }
 
-  if (process.platform === "darwin") {
+  if (process.platform === 'darwin') {
     template.unshift({
       label: app.name,
       submenu: [
         {
-          label: "About mtwe",
+          label: 'About mtwe',
           click() {
             showAboutWindow();
           }
         },
-        { type: "separator" },
-        { role: "services", submenu: [] },
-        { type: "separator" },
-        { role: "hide" },
-        { role: "hideothers" },
-        { role: "unhide" },
-        { type: "separator" },
-        { role: "quit" }
+        { type: 'separator' },
+        { role: 'services', submenu: [] },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideothers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
       ]
     });
   } else {
     template.push({
-      label: "help",
+      label: 'help',
       submenu: [
         {
-          label: "About mtwe",
+          label: 'About mtwe',
           click() {
             showAboutWindow();
           }
@@ -203,31 +203,31 @@ function initWindowMenu() {
 
 function showAboutWindow() {
   openAboutWindow({
-    icon_path: path.join(__dirname, "icons/png/512x512.png"),
+    icon_path: path.join(__dirname, 'icons/png/512x512.png'),
     copyright: 'Copyright (c) 2019 kondoumh',
-    package_json_dir: path.join(__dirname, "/"),
+    package_json_dir: path.join(__dirname, '/'),
     win_options: {
       parent: mainWindow,
     }
   });
 }
 
-ipcMain.on("webview-ready", (e, url) => {
+ipcMain.on('webview-ready', (e, url) => {
   const contents = webContents.getAllWebContents().filter(c => !c.getURL().startsWith('file://'));
   const content = contents.find(c => c.getURL() === url);
   contextMenu({
     window: content,
     prepend: (actions, params) => [
       {
-        label: "Open with browser",
+        label: 'Open with browser',
         click: () => { shell.openExternal(params.linkURL); },
-        visible: params.linkURL && (params.mediaType === "none" || params.mediaType === "image")
+        visible: params.linkURL && (params.mediaType === 'none' || params.mediaType === 'image')
       }
     ]
   });
 });
 
-ipcMain.on("toggleAr", () => {
-  const menu = Menu.getApplicationMenu().getMenuItemById("autoRefresh");
+ipcMain.on('toggleAr', () => {
+  const menu = Menu.getApplicationMenu().getMenuItemById('autoRefresh');
   menu.click();
 });
