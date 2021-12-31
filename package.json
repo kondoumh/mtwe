@@ -26,14 +26,14 @@
   "license": "MIT",
   "devDependencies": {
     "braces": ">=2.3.1",
-    "electron": "^12.0.1",
-    "electron-builder": "^22.9.1",
+    "electron": "^16.0.5",
+    "electron-builder": "^22.14.5",
     "minimist": ">=1.2.2"
   },
   "dependencies": {
-    "about-window": "^1.14.0",
-    "electron-context-menu": "^2.5.0",
+    "about-window": "^1.15.2",
+    "electron-context-menu": "^3.1.1",
     "electron-search-text": "^0.3.0",
-    "electron-store": "^7.0.2"
+    "electron-store": "^8.0.1"
   }
 }
