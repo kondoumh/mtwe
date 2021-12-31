@@ -1,6 +1,6 @@
 {
   "name": "mtwe",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Twitter in Electron",
   "main": "main.js",
   "build": {
