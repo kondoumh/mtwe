@@ -1,7 +1,9 @@
-const { electron, shell, clipboard } = require('electron');
+const { shell, clipboard, ipcRenderer } = require('electron');
 
 const webview = document.querySelector('#webview');
 const container = document.querySelector('#main');
+
+const ElectronSearchText = require('electron-search-text');
 
 let refreshIntervalId;
 
@@ -17,13 +19,10 @@ onload = () => {
   indicateAutoRefresh(false);
 };
 
-const { ipcRenderer } = require('electron');
-
 webview.addEventListener('dom-ready', () => {
   ipcRenderer.send('webview-ready', webview.getURL());
 });
 
-const ElectronSearchText = require('electron-search-text');
 const searcher = new ElectronSearchText({
   target: '#webview',
   input: '.search-input',
